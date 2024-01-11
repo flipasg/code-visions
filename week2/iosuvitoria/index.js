@@ -27,7 +27,3 @@ const fizzbuzz = () => {
 
 fizzbuzz();
 
-
-
-fizzbuzz()
-
