@@ -37,4 +37,32 @@ describe('Enchantment', () => {
 
     expect(enchant(weapon, enchanment)).toStrictEqual(expectedResult)
   });
+
+  test('should enchant weapon only once (with fire)', () => {
+    const weapon = {
+      name: 'Vampire Dagger of the Nooblet',
+      stats: ['5 - 10 attack damage', '1.2 attack speed', '+5 lifesteal'],
+    };
+    const enchanment = MAGIC_BOOK.fire;
+    const expectedResult = {
+      name: 'Inferno Dagger of the Nooblet',
+      stats: ['5 - 10 attack damage', '1.2 attack speed', '+5 fire damage'],
+    };
+
+    expect(enchant(weapon, enchanment)).toStrictEqual(expectedResult)
+  });
+
+  test('should enchant weapon only once (with agility)', () => {
+    const weapon = {
+      name: 'Vampire Dagger of the Nooblet',
+      stats: ['5 - 10 attack damage', '1.2 attack speed', '+5 lifesteal'],
+    };
+    const enchanment = MAGIC_BOOK.agility;
+    const expectedResult = {
+      name: 'Quick Dagger of the Nooblet',
+      stats: ['5 - 10 attack damage', '1.2 attack speed', '+5 agility'],
+    };
+
+    expect(enchant(weapon, enchanment)).toStrictEqual(expectedResult)
+  });
 });
