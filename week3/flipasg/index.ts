@@ -1,3 +1,4 @@
+import { MAGIC_BOOK } from './constants';
 import { Enchantment, Weapon } from './types';
 
 export const enchant = (weapon: Weapon, enchantment: Enchantment): Weapon => {
@@ -16,3 +17,10 @@ export const enchant = (weapon: Weapon, enchantment: Enchantment): Weapon => {
     stats: [...originalStats, attribute],
   };
 };
+
+export const getRandomEnchantment = (): Enchantment => {
+  const enchantments = Object.values(MAGIC_BOOK);
+  const randomNumber = Math.ceil(Math.random()* enchantments.length);
+
+  return enchantments[randomNumber];
+}
