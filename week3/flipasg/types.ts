@@ -1,11 +1,11 @@
-export interface Weapon {
+export interface IWeapon {
   name: string;
   stats: string[];
 }
 
-export interface Enchantment {
+export interface IEnchantment {
   prefix: string;
   attribute: string;
 }
 
-export type MagicBook = Record<string, Enchantment>;
+export type IMagicBook = Record<string, IEnchantment>;

@@ -1,6 +1,6 @@
-import { MagicBook, Weapon } from './types';
+import {  IMagicBook, IWeapon } from './types';
 
-export const MAGIC_BOOK: MagicBook = {
+export const MAGIC_BOOK: IMagicBook = {
   "ice": {
     "prefix": "Icy",
     "attribute": "+5 ice damage"
@@ -23,7 +23,7 @@ export const MAGIC_BOOK: MagicBook = {
   }
 }
 
-export const WEAPON: Weapon = {
+export const WEAPON: IWeapon = {
   name: 'Dagger of the Nooblet',
   stats: [
     '5 - 10 attack damage',
