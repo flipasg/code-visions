@@ -94,5 +94,33 @@ describe('Bowling', () => {
 
     expect(bowling.score()).toBe(35)
   });
+
+  test('should score 150 rolling rolling with 5 pins all the frames', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+
+    expect(bowling.score()).toBe(150)
+  });
   
 })

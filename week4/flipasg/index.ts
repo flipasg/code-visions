@@ -3,7 +3,7 @@ export class Bowling {
 
   roll(pins: number) {
     let currentFrameIndex = this.frames.length === 0 ? 0 : this.frames.length - 1;
-    if(this.frames[currentFrameIndex]?.length === 2){
+    if(this.frames.length < 10 && this.frames[currentFrameIndex]?.length === 2){
       currentFrameIndex++;
     }
     if (this.frames[currentFrameIndex] === undefined) {
