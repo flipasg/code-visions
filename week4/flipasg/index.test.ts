@@ -7,7 +7,7 @@ describe('Bowling', () => {
 
     bowling.roll(1);
 
-    expect(bowling.score()).toBe(1)
+    expect(bowling.score()).toBe(1);
   });
 
   test('should score 2 with a roll of 2 pins', () =>{
@@ -15,7 +15,7 @@ describe('Bowling', () => {
 
     bowling.roll(2);
 
-    expect(bowling.score()).toBe(2)
+    expect(bowling.score()).toBe(2);
   });
 
   test('should score 3 with a roll of 3 pins', () =>{
@@ -159,6 +159,20 @@ describe('Bowling', () => {
 
 
     expect(bowling.score()).toBe(117)
+  });
+
+  
+  test('should score 28 game with strike in the second roll of a frame', () =>{
+    const bowling = new Bowling();
+
+
+    bowling.roll(0);
+    bowling.roll(10);
+
+    bowling.roll(7);
+    bowling.roll(2);
+
+    expect(bowling.score()).toBe(28);
   });
   
 })
