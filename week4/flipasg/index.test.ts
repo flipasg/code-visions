@@ -10,7 +10,6 @@ describe('Bowling', () => {
     expect(bowling.score()).toBe(1)
   });
 
-
   test('should score 2 with a roll of 2 pins', () =>{
     const bowling = new Bowling();
 
@@ -44,7 +43,6 @@ describe('Bowling', () => {
 
     expect(bowling.score()).toBe(2)
   });
-
 
   test('should score 90 rolling nine pins ten times', () =>{
     const bowling = new Bowling();
@@ -121,6 +119,46 @@ describe('Bowling', () => {
     bowling.roll(5);
 
     expect(bowling.score()).toBe(150)
+  });
+
+
+  test('should score 117 game', () =>{
+    const bowling = new Bowling();
+
+
+    bowling.roll(5);
+    bowling.roll(5);
+
+    bowling.roll(6);
+    bowling.roll(0);
+
+    bowling.roll(5);
+    bowling.roll(5);
+
+    bowling.roll(7);
+    bowling.roll(0);
+
+    bowling.roll(9);
+    bowling.roll(0);
+
+    bowling.roll(5);
+    bowling.roll(5);
+    
+    bowling.roll(7);
+    bowling.roll(3);
+
+    bowling.roll(0);
+    bowling.roll(5);
+
+    bowling.roll(5);
+    bowling.roll(5);
+
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+
+
+    expect(bowling.score()).toBe(117)
   });
   
 })

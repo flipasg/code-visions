@@ -9,9 +9,10 @@ export class Bowling {
     if (this.frames[currentFrameIndex] === undefined) {
       this.frames[currentFrameIndex] = [];
     }
+    const isBrokenStreak = this.frames[currentFrameIndex].length === 1 && this.frames[currentFrameIndex][0] === 0;
     this.frames[currentFrameIndex].push(pins);
 
-    if(currentFrameIndex >= 1){
+    if(!isBrokenStreak && currentFrameIndex >= 1){
       const previousFrameIndex = currentFrameIndex - 1;
       const previousFrameSum = this.frames[previousFrameIndex].reduce((acc, curr) => acc + curr, 0)
       if(previousFrameSum === 10) {
