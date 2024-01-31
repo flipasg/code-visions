@@ -1,13 +1,26 @@
 export class Bowling {
-  pins = 0;
-
-  constructor() {}
+  frames: number[][] = [];
 
   roll(pins: number) {
-    this.pins += pins;
-  }
+    let currentFrameIndex = this.frames.length === 0 ? 0 : this.frames.length - 1;
+    if(this.frames[currentFrameIndex]?.length === 2){
+      currentFrameIndex++;
+    }
+    if (this.frames[currentFrameIndex] === undefined) {
+      this.frames[currentFrameIndex] = [];
+    }
+    this.frames[currentFrameIndex].push(pins);
+
+    if(currentFrameIndex >= 1){
+      const previousFrameIndex = currentFrameIndex - 1;
+      const previousFrameSum = this.frames[previousFrameIndex].reduce((acc, curr) => acc + curr, 0)
+      if(previousFrameSum === 10) {
+        this.frames[previousFrameIndex].push(pins);
+      }
+    }
+   }
 
   score(): number {
-    return this.pins;
+    return this.frames.flat().reduce((acc, curr) => acc + curr, 0);
   }
 }

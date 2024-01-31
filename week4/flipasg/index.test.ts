@@ -62,4 +62,37 @@ describe('Bowling', () => {
 
     expect(bowling.score()).toBe(90)
   });
+
+  test('should score 20 rolling a spare (five and five pins) and then five pins', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+
+    expect(bowling.score()).toBe(20)
+  });
+
+  test('should score 24 rolling a spare (three and seven pins) and then seven pins', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(3);
+    bowling.roll(7);
+    bowling.roll(7);
+
+    expect(bowling.score()).toBe(24)
+  });
+
+  test('should score 35 rolling two spares (five and five pins) and then five pins', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+    bowling.roll(5);
+
+    expect(bowling.score()).toBe(35)
+  });
+  
 })
