@@ -1,36 +1,39 @@
 export class Bowling {
   frames: number[][] = [];
+  currentFrameIndex: number = 0;
 
   roll(pins: number) {
-    let currentFrameIndex =
-      this.frames.length === 0 ? 0 : this.frames.length - 1;
-    if (
-      this.frames.length < 10 &&
-      this.frames[currentFrameIndex]?.length === 2
-    ) {
-      currentFrameIndex++;
-    }
-    if (this.frames[currentFrameIndex] === undefined) {
-      this.frames[currentFrameIndex] = [];
-      if(pins === 10){
-        this.frames[currentFrameIndex + 1] = [];
-      }
-    }
     const isBrokenStreak =
-      this.frames[currentFrameIndex].length === 1 &&
-      this.frames[currentFrameIndex][0] === 0;
-    this.frames[currentFrameIndex].push(pins);
+      this.frames[this.currentFrameIndex]?.length === 1 &&
+      this.frames[this.currentFrameIndex][0] === 0;
 
-    if (!isBrokenStreak && currentFrameIndex >= 1) {
-        const previousFrameIndex = currentFrameIndex - 1;
-        const previousFrameSum = this.frames[previousFrameIndex].reduce(
+    this.frames[this.currentFrameIndex] = [
+      ...(this.frames[this.currentFrameIndex] ?? []),
+      pins,
+    ];
+
+    if (!isBrokenStreak) {
+      const previousFrameIndex = this.currentFrameIndex - 1;
+      const previousFrame = this.frames[previousFrameIndex];
+      if (previousFrame) {
+        const isStrike = previousFrame.includes(10);
+        const isSpare = previousFrame.reduce(
           (acc, curr) => acc + curr,
           0
-        );
-        if (previousFrameSum === 10 || this.frames[previousFrameIndex].includes(10)) {
-          this.frames[previousFrameIndex].push(pins);
+        ) === 10;
+
+        if (isSpare || isStrike) {
+          previousFrame.push(pins);
         }
-      
+      }
+    }
+
+    if (
+      pins === 10 ||
+      (this.frames.length < 10 &&
+        this.frames[this.currentFrameIndex]?.length === 2)
+    ) {
+      this.currentFrameIndex++;
     }
   }
 
