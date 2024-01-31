@@ -12,6 +12,9 @@ export class Bowling {
     }
     if (this.frames[currentFrameIndex] === undefined) {
       this.frames[currentFrameIndex] = [];
+      if(pins === 10){
+        this.frames[currentFrameIndex + 1] = [];
+      }
     }
     const isBrokenStreak =
       this.frames[currentFrameIndex].length === 1 &&

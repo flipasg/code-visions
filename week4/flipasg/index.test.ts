@@ -174,5 +174,16 @@ describe('Bowling', () => {
 
     expect(bowling.score()).toBe(28);
   });
+
+  test('should score 28 game with strike in the first roll of a frame', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(10);
+
+    bowling.roll(7);
+    bowling.roll(2);
+
+    expect(bowling.score()).toBe(28);
+  });
   
 })
