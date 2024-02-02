@@ -1,43 +1,42 @@
 export class Bowling {
   frames: number[][] = [];
   currentFrameIndex: number = 0;
+  MAX_ROLLS_PER_FRAME: number = 2;
+  MAX_PINS: number = 10;
+  MAX_FRAMES: number = 10;
 
   roll(pins: number) {
-    const isBrokenStreak =
-      this.frames[this.currentFrameIndex]?.length === 1 &&
-      this.frames[this.currentFrameIndex][0] === 0;
-
     this.frames[this.currentFrameIndex] = [
       ...(this.frames[this.currentFrameIndex] ?? []),
       pins,
     ];
 
-    if (!isBrokenStreak) {
-      const previousFrameIndex = this.currentFrameIndex - 1;
-      const previousFrame = this.frames[previousFrameIndex];
-      if (previousFrame) {
-        const isStrike = previousFrame.includes(10);
-        const isSpare = previousFrame.reduce(
-          (acc, curr) => acc + curr,
-          0
-        ) === 10;
-
-        if (isSpare || isStrike) {
-          previousFrame.push(pins);
-        }
-      }
-    }
-
     if (
-      pins === 10 ||
-      (this.frames.length < 10 &&
-        this.frames[this.currentFrameIndex]?.length === 2)
+      this.currentFrameIndex < this.MAX_FRAMES - 1 &&
+      (pins === this.MAX_PINS || this.frames[this.currentFrameIndex]?.length === this.MAX_ROLLS_PER_FRAME)
     ) {
       this.currentFrameIndex++;
     }
   }
 
   score(): number {
-    return this.frames.flat().reduce((acc, curr) => acc + curr, 0);
+    return this.frames.reduce((acc, curr, currentIndex, frames) => {
+      const frameSum = curr.reduce((acc, curr) => acc + curr, 0);
+
+      const isStrike = curr.includes(this.MAX_PINS);
+      const isSpare = frameSum === this.MAX_PINS;
+
+      const spareAccumulator = isSpare ? 1 : 0;
+      const accumulators = isStrike ? 2 : spareAccumulator;
+
+      const restRolls = frames
+        .slice(currentIndex + 1)
+        .flat()
+        .slice(0, accumulators);
+
+      const totalSum = frameSum + restRolls.reduce((acc, curr) => acc + curr, 0);
+
+      return acc + totalSum;
+    }, 0);
   }
 }

@@ -185,5 +185,72 @@ describe('Bowling', () => {
 
     expect(bowling.score()).toBe(28);
   });
+
+  test('should score 28 game with consecutive strikes', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(10);
+
+    bowling.roll(10);
+
+    bowling.roll(7);
+    bowling.roll(2);
+
+    expect(bowling.score()).toBe(55);
+  });
+
+  test('should score 300 game with all consecutive strikes', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+    bowling.roll(10);
+
+    expect(bowling.score()).toBe(300);
+  });
+
+  test('should score 167 game', () =>{
+    const bowling = new Bowling();
+
+    bowling.roll(10);
+
+    bowling.roll(7);
+    bowling.roll(3);
+
+    bowling.roll(9);
+    bowling.roll(0);
+
+    bowling.roll(10);
+
+    bowling.roll(0);
+    bowling.roll(8);
+
+    bowling.roll(8);
+    bowling.roll(2);
+
+    bowling.roll(0);
+    bowling.roll(6);
+
+    bowling.roll(10);
+
+    bowling.roll(10);
+    
+    bowling.roll(10);
+
+    bowling.roll(8);
+
+    bowling.roll(1);
+
+    expect(bowling.score()).toBe(167);
+  });
   
 })
